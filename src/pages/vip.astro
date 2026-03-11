@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import UpsellModal from '../components/UpsellModal.astro';
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo/logo192.png" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DJC AI Talk - VIP Package</title>
+</head>
+<body class="pt-14 bg-white lg:h-screen lg:overflow-hidden">
+    <Navbar page="vip" />
+    <section class="lg:h-[calc(100vh-3.5rem)] py-10 lg:py-0 px-6 lg:flex lg:items-center lg:overflow-hidden">
+        <div class="max-w-2xl mx-auto w-full">
+            <!-- Back link -->
+            <a href="/" class="flex items-center gap-2 text-sm text-gray-400 hover:text-black transition-colors mb-6">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back to Event Page
+            </a>
+
+            <!-- Label -->
+            <div class="inline-block border border-black text-sm font-bold tracking-widest px-4 py-1 mb-6 rounded">
+                EXCLUSIVE OFFER
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-3xl lg:text-4xl font-bold mb-3">Upgrade to the VIP Package</h1>
+            <p class="text-gray-500 mb-6">You’ve secured your free seat. Explore a special VIP offer for registered attendees.</p>
+
+            <!-- Benefits -->
+            <ul class="flex flex-col divide-y divide-gray-100 text-sm">
+                <li class="flex items-center justify-between py-2 gap-4">
+                    <span class="flex items-center gap-3">
+                        <!-- Play / Recording -->
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="black" stroke-width="1.5"/>
+                            <path d="M8 7.5l5 2.5-5 2.5V7.5z" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="font-medium">Session Replay Access (Zoom Recording)</span>
+                    </span>
+                    <span class="text-gray-400 line-through shrink-0">RM 300</span>
+                </li>
+                <li class="flex items-center justify-between py-2 gap-4">
+                    <span class="flex items-center gap-3">
+                        <!-- Chat bot -->
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 4v-4H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+                            <path d="M6 7h8M6 10h5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="font-medium">AI Auto Reply Chatbot Subscription <span class="text-gray-400 font-normal">× 2 months</span></span>
+                    </span>
+                    <span class="text-gray-400 line-through shrink-0">RM 576</span>
+                </li>
+                <li class="flex items-center justify-between py-2 gap-4">
+                    <span class="flex items-center gap-3">
+                        <!-- Person / consultation -->
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="7" r="3" stroke="black" stroke-width="1.5"/>
+                            <path d="M4 17c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="font-medium">1-on-1 Consultation <span class="text-gray-400 font-normal">× 3 sessions</span></span>
+                    </span>
+                    <span class="text-gray-400 line-through shrink-0">RM 600</span>
+                </li>
+                <li class="flex items-center justify-between py-2 gap-4">
+                    <span class="flex items-center gap-3">
+                        <!-- Mobile / WhatsApp -->
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                            <rect x="5" y="2" width="10" height="16" rx="2" stroke="black" stroke-width="1.5"/>
+                            <circle cx="10" cy="15" r="1" fill="black"/>
+                        </svg>
+                        <span class="font-medium">WhatsApp Business API Strategy</span>
+                    </span>
+                    <span class="text-gray-400 line-through shrink-0">RM 300</span>
+                </li>
+            </ul>
+
+            <!-- Pricing -->
+            <div class="flex flex-col divide-y divide-gray-100 mb-4 text-sm border-t border-gray-100">
+                <div class="flex items-center justify-between pt-4 pb-4">
+                    <span class="text-gray-500">Total Value</span>
+                    <span class="text-gray-500" style="text-decoration: line-through;">RM 1,776</span>
+                </div>
+                <div class="flex items-center justify-between py-4">
+                    <span class="font-medium text-gray-600">Exclusive Offer Price</span>
+                    <span class="text-3xl font-bold">RM 388</span>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <button
+                id="open-upsell-vip"
+                class="w-full bg-black text-white text-base font-semibold py-4 rounded hover:bg-gray-800 transition-colors duration-200 cursor-pointer mb-4"
+            >
+                Upgrade to VIP &nbsp;-&nbsp; RM 388
+            </button>
+
+            <!-- Dismiss -->
+            <div class="text-center">
+                <a href="/" class="text-xs text-gray-400 hover:text-gray-600 underline">
+                    No thanks, I'll continue with the free talk
+                </a>
+            </div>
+        </div>
+    </section>
+    <UpsellModal />
+</body>
+</html>
+
+<script>
+    // Persist ref code from URL into sessionStorage
+    const refCode = new URLSearchParams(window.location.search).get('ref');
+    if (refCode) {
+        sessionStorage.setItem('refCode', refCode);
+    }
+
+    // Open upsell modal on CTA click
+    document.getElementById('open-upsell-vip')?.addEventListener('click', () => {
+        const upsellModal = document.getElementById('upsell-modal');
+        upsellModal?.classList.remove('hidden');
+        upsellModal?.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    });
+</script>

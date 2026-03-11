@@ -1,0 +1,68 @@
+---
+---
+
+<!-- Upsell Modal -->
+<div id="upsell-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 sm:px-4">
+    <div class="bg-white shadow-2xl w-full sm:max-w-lg relative overflow-y-auto max-h-screen sm:max-h-[90vh]">
+        <!-- Close button -->
+        <button id="close-upsell-modal" class="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors z-10 cursor-pointer">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <!-- GHL Payment Form -->
+        <iframe
+            src="https://link.djcsystem.com/widget/form/LIcS3Gd9ADDLRKt3O2FV"
+            id="inline-LIcS3Gd9ADDLRKt3O2FV"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Form 64"
+            data-height="677"
+            data-layout-iframe-id="inline-LIcS3Gd9ADDLRKt3O2FV"
+            data-form-id="LIcS3Gd9ADDLRKt3O2FV"
+            title="Form 64"
+            style="width:100%;border:none;display:block;"
+        ></iframe>
+
+    </div>
+</div>
+<script src="https://link.djcsystem.com/js/form_embed.js"></script>
+
+<script>
+    const upsellModal = document.getElementById('upsell-modal');
+    const closeUpsellBtn = document.getElementById('close-upsell-modal');
+    function closeUpsell() {
+        upsellModal?.classList.add('hidden');
+        upsellModal?.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+
+    closeUpsellBtn?.addEventListener('click', closeUpsell);
+    upsellModal?.addEventListener('click', (e) => {
+        if (e.target === upsellModal) closeUpsell();
+    });
+
+    // Inject referral code into payment form iframe
+    const refCode = sessionStorage.getItem('refCode') || new URLSearchParams(window.location.search).get('ref');
+    if (refCode) {
+        const paymentIframe = document.getElementById('inline-LIcS3Gd9ADDLRKt3O2FV') as HTMLIFrameElement | null;
+        if (paymentIframe) {
+            const url = new URL(paymentIframe.src);
+            url.searchParams.set('ref', refCode);
+            paymentIframe.src = url.toString();
+        }
+    }
+
+    // Listen for GHL form 1 submission — set flag so close handler can redirect to /vip
+    window.addEventListener('message', (e) => {
+        if (Array.isArray(e.data) && e.data[0] === 'set-sticky-contacts' && e.data[1] === '_ud') {
+            (window as any).__vipPending = true;
+        }
+    });
+</script>

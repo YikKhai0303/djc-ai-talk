@@ -1,14 +1,21 @@
 ---
+const { page } = Astro.props;
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-40 bg-[#EBEBEB] border-b border-gray-200">
-    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-end">
-        <button
-            id="open-signup-modal-nav"
-            class="bg-black text-white text-sm font-semibold px-5 py-2 rounded hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
-        >
-            Sign Up
-        </button>
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-end gap-4">
+        <div class="flex items-center gap-1 text-xs text-gray-600">
+            <span class="text-gray-400">Starts in</span>
+            <span id="nav-countdown" class="font-semibold tabular-nums tracking-tight"></span>
+        </div>
+        {page !== 'vip' && (
+            <button
+                id="open-signup-modal-nav"
+                class="bg-black text-white text-sm font-semibold px-5 py-2 rounded hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+            >
+                Sign Up
+            </button>
+        )}
     </div>
 </nav>
 
@@ -19,4 +26,23 @@
         modal?.classList.add('flex');
         document.body.style.overflow = 'hidden';
     });
+
+    // Countdown to 26 Mar 2026 8:00 PM MYT (UTC+8)
+    const eventDate = new Date('2026-03-26T20:00:00+08:00');
+    const el = document.getElementById('nav-countdown');
+
+    function updateCountdown() {
+        const diff = eventDate.getTime() - Date.now();
+        if (!el || diff <= 0) {
+            if (el) el.textContent = 'Live now!';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        el.textContent = `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 </script>
