@@ -1,0 +1,22 @@
+---
+---
+
+<nav class="fixed top-0 left-0 right-0 z-40 bg-[#EBEBEB] border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-end">
+        <button
+            id="open-signup-modal-nav"
+            class="bg-black text-white text-sm font-semibold px-5 py-2 rounded hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+        >
+            Sign Up
+        </button>
+    </div>
+</nav>
+
+<script>
+    document.getElementById('open-signup-modal-nav')?.addEventListener('click', () => {
+        const modal = document.getElementById('signup-modal');
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    });
+</script>

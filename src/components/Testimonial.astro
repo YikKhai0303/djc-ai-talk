@@ -1,0 +1,76 @@
+---
+const row1 = [
+    "/talk_images/DaveTalk1.JPG",
+    "/talk_images/DaveTalk2.JPG",
+    "/talk_images/DaveTalk3.JPG",
+    "/talk_images/DaveTalk4.JPG",
+    "/talk_images/DaveTalk5.JPG",
+    "/talk_images/DaveTalk6.JPG",
+];
+
+const row2 = [
+    "/talk_images/DaveTalkExcel1.jpeg",
+    "/talk_images/DaveTalkExcel2.jpeg",
+    "/talk_images/DaveTalkExcel3.jpeg",
+    "/talk_images/DaveTalkExcel4.jpeg",
+    "/talk_images/DaveTalkExcel5.jpeg",
+    "/talk_images/DaveTalkExcel6.jpeg",
+];
+---
+
+<section class="bg-[#EBEBEB] py-16 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 mb-10 text-center">
+        <div class="inline-block border border-black text-sm font-bold tracking-widest px-4 py-1 mb-6 rounded">
+            PAST SESSIONS
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold leading-snug">
+            See What Happens in the Room
+        </h2>
+    </div>
+
+    <!-- Row 1: scroll left -->
+    <div class="relative mb-4">
+        <div class="flex gap-4 w-max animate-scroll-left">
+            {[...row1, ...row1].map((src, i) => (
+                <img
+                    src={src}
+                    alt={`Talk photo ${i + 1}`}
+                    class="h-52 w-auto rounded-xl object-cover flex-shrink-0"
+                />
+            ))}
+        </div>
+    </div>
+
+    <!-- Row 2: scroll right -->
+    <div class="relative">
+        <div class="flex gap-4 w-max animate-scroll-right">
+            {[...row2, ...row2].map((src, i) => (
+                <img
+                    src={src}
+                    alt={`Talk photo ${i + 1}`}
+                    class="h-52 w-auto rounded-xl object-cover flex-shrink-0"
+                />
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes scroll-left {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scroll-right {
+        0%   { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+    }
+
+    .animate-scroll-left {
+        animation: scroll-left 60s linear infinite;
+    }
+
+    .animate-scroll-right {
+        animation: scroll-right 60s linear infinite;
+    }
+</style>
