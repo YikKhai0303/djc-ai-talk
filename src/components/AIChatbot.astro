@@ -1,5 +1,6 @@
 ---
 ---
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" is:inline></script>
 
 <section class="bg-white py-16 lg:py-24 px-6 relative">
     <div class="absolute inset-0 pointer-events-none grid-corners" aria-hidden="true"></div>
@@ -147,6 +148,70 @@
 
         </div>
 
+        <!-- Supported Platforms -->
+        <div class="mt-14">
+            <p class="text-base text-gray-600 text-center mb-6">
+                Connects to wherever your customers message you
+            </p>
+            <div class="grid grid-cols-4 sm:grid-cols-8 gap-x-4 gap-y-6 justify-items-center">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="logos:whatsapp-icon" style="font-size:36px"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">WhatsApp</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box relative">
+                        <iconify-icon icon="logos:whatsapp-icon" style="font-size:36px"></iconify-icon>
+                        <span class="absolute bottom-1 right-1 text-green-600 text-lg font-black leading-none">+</span>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">WABA</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="mdi:facebook" style="font-size:36px; color:#1877F2"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">Messenger</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="mdi:instagram" style="font-size:36px; color:#E1306C"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">Instagram</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="logos:telegram" style="font-size:36px"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">Telegram</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="simple-icons:zalo" style="font-size:36px; color:#0068FF"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">Zalo</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <iconify-icon icon="simple-icons:line" style="font-size:36px; color:#06C755"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">LINE</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="platform-box">
+                        <svg viewBox="0 0 36 36" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Bubble with tail on bottom-left -->
+                            <path d="M4 6a4 4 0 014-4h20a4 4 0 014 4v16a4 4 0 01-4 4H10l-6 6V26V6z" fill="#4B5563"/>
+                            <!-- Text lines -->
+                            <line x1="10" y1="12" x2="26" y2="12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                            <line x1="10" y1="18" x2="22" y2="18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 whitespace-nowrap">Chat Widget</span>
+                </div>
+            </div>
+        </div>
+
         <!-- CTA -->
         <div class="text-center mt-12">
             <button
@@ -162,6 +227,14 @@
 </section>
 
 <style>
+    .platform-box {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .grid-corners {
         background-image: repeating-linear-gradient(45deg, #e5e7eb 0, #e5e7eb 1px, transparent 0, transparent 50%);
         background-size: 20px 20px;
@@ -172,6 +245,7 @@
         -webkit-mask-composite: source-over;
         mask-composite: add;
     }
+
 </style>
 
 <script>
