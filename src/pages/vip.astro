@@ -30,7 +30,7 @@ import UpsellModal from '../components/UpsellModal.astro';
 
             <!-- Headline -->
             <h1 class="text-3xl lg:text-4xl font-bold mb-3">Upgrade to the VIP Package</h1>
-            <p class="text-gray-500 mb-6">You’ve secured your free seat. Explore a special VIP offer for registered attendees.</p>
+            <p class="text-gray-500 mb-6">You've secured your free seat. Explore a special VIP offer for registered attendees.</p>
 
             <!-- Benefits -->
             <ul class="flex flex-col divide-y divide-gray-100 text-sm">
@@ -119,11 +119,8 @@ import UpsellModal from '../components/UpsellModal.astro';
         sessionStorage.setItem('refCode', refCode);
     }
 
-    // Open upsell modal on CTA click
+    // Open upsell modal on CTA click — uses shared function that injects contact data
     document.getElementById('open-upsell-vip')?.addEventListener('click', () => {
-        const upsellModal = document.getElementById('upsell-modal');
-        upsellModal?.classList.remove('hidden');
-        upsellModal?.classList.add('flex');
-        document.body.style.overflow = 'hidden';
+        (window as any).openUpsellModal?.();
     });
 </script>

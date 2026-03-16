@@ -48,21 +48,39 @@
         if (e.target === upsellModal) closeUpsell();
     });
 
-    // Inject referral code into payment form iframe
-    const refCode = sessionStorage.getItem('refCode') || new URLSearchParams(window.location.search).get('ref');
-    if (refCode) {
-        const paymentIframe = document.getElementById('inline-LIcS3Gd9ADDLRKt3O2FV') as HTMLIFrameElement | null;
-        if (paymentIframe) {
-            const url = new URL(paymentIframe.src);
-            url.searchParams.set('ref', refCode);
-            paymentIframe.src = url.toString();
+    // Expose global open function — injects all data into iframe src at open time
+    (window as any).openUpsellModal = () => {
+        const iframe = document.getElementById('inline-LIcS3Gd9ADDLRKt3O2FV') as HTMLIFrameElement | null;
+        if (iframe) {
+            const url = new URL(iframe.src);
+            const ref   = sessionStorage.getItem('refCode') || new URLSearchParams(window.location.search).get('ref');
+            const name  = sessionStorage.getItem('contact_name');
+            const email = sessionStorage.getItem('contact_email');
+            const phone = sessionStorage.getItem('contact_phone');
+            if (ref)   url.searchParams.set('ref', ref);
+            if (name)  url.searchParams.set('full_name', name);
+            if (email) url.searchParams.set('email', email);
+            if (phone) url.searchParams.set('phone', phone);
+            iframe.src = url.toString();
         }
-    }
+        upsellModal?.classList.remove('hidden');
+        upsellModal?.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    };
 
-    // Listen for GHL form 1 submission — set flag so close handler can redirect to /vip
+    // Listen for GHL form 1 submission — save contact data + flag redirect to /vip
     window.addEventListener('message', (e) => {
         if (Array.isArray(e.data) && e.data[0] === 'set-sticky-contacts' && e.data[1] === '_ud') {
             (window as any).__vipPending = true;
+            try {
+                const contact = typeof e.data[2] === 'string' ? JSON.parse(e.data[2]) : e.data[2];
+                if (contact && typeof contact === 'object') {
+                    if (contact.full_name) sessionStorage.setItem('contact_name', contact.full_name);
+                    if (contact.email)     sessionStorage.setItem('contact_email', contact.email);
+                    if (contact.phone)     sessionStorage.setItem('contact_phone', contact.phone);
+                }
+            } catch {};
         }
     });
+
 </script>
